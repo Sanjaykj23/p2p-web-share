@@ -1,8 +1,9 @@
 import express from 'express';
 import {createServer} from 'http';
-import  cors from 'cors';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import { initSocket } from './config/socket.js';
+import { corsOptions } from './config/cors.js';
 
 
 dotenv.config();
@@ -15,10 +16,7 @@ app.get('/health',(req,res)=>{
     res.status(200).json({ status: 'Signaling server operational' });
 });
 
-app.use(cors({
-    origin:process.env.FRONTEND_URL,
-    methods:['GET','POST']
-}));
+app.use(cors(corsOptions));
 
 const httpServer=createServer(app);
 initSocket(httpServer);

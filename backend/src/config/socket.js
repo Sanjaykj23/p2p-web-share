@@ -1,13 +1,11 @@
 import { Server } from 'socket.io';
 import { handleRoomEvents } from '../socket/roomHandler.js';
 import { handleSignalingEvents } from '../socket/signalHandler.js';
+import { corsOptions } from './cors.js';
 
 export const initSocket=(httpServer)=>{
     const io=new Server(httpServer,{
-        cors:{
-            origin:process.env.FRONTEND_URL || "http://localhost:3000",
-            methods:["GET","POST"]
-        }
+        cors: corsOptions
     });
 
     io.on('connection',(socket)=>{
