@@ -24,5 +24,5 @@ const httpServer=createServer(app);
 initSocket(httpServer);
 
 httpServer.listen(PORT, () => {
-    console.log(` Signaling infrastructure running safely on port ${PORT}`);
+    console.log(`[Server] Signaling infrastructure running safely on port ${PORT}`);
 });
